@@ -31,9 +31,10 @@ export const contactsApi = createApi({
                 url: `contacts/${id}`,
                 method: 'DELETE',
             }),
-            // invalidatesTags: [{type: 'Products', id: 'LIST'}]
+            invalidatesTags: ['Contacts']
         })
     })
 });
 
-export const {useGetContactsQuery, useAddContactMutation, useDeleteContactMutation} = contactsApi;
+// export const {useGetContactsQuery, useAddContactMutation, useDeleteContactMutation} = contactsApi;
+export const {useGetContactsQuery, useDeleteContactMutation, useAddContactMutation} =contactsApi;

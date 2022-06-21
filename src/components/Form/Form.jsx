@@ -3,35 +3,42 @@ import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 
 import actions from 'redux/contacts/contacts-actions';
+import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts-Api';
 import style from './Form.module.css';
 
 function Form() {
   const [input, setInput] = useState({ name: '', number: '' });
-  const contacts = useSelector(state => state.contacts.phoneBook);
-  const dispatch = useDispatch();
+
+  const {data:contacts} = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
+
+
 
   const handleInputChange = e => {
     let key = e.target.name;
     setInput(prevState => ({ ...prevState, [key]: e.target.value }));
   };
 
-  const handleSubmit = e => {
+
+  const handleSubmit = async e => {
     e.preventDefault();
 
     let data = { ...input, id: nanoid() };
 
     let [check] = contacts.filter(el => {
-      return el.name.toLowerCase() === data.name.toLowerCase();
-    });
-
-    if (check) {
-      alert(`${data.name} is already in your contacts`);
-    } else {
-      dispatch(actions.addContact(data));
-    }
-
+          return el.name.toLowerCase() === data.name.toLowerCase();
+        });
+    
+        if (check) {
+          alert(`${data.name} is already in your contacts`);
+        } else {
+    
+          await addContact(data);
+      
+        }
     setInput({ name: '', number: '' });
   };
+
 
   return (
     <form onSubmit={handleSubmit}>

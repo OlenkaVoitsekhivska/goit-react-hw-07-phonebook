@@ -1,12 +1,16 @@
 import ContactsList from './ContactsList/ContactsList';
-// import Form from './Form/Form';
-// import Filter from './Filter/Filter';
+import Form from './Form/Form';
+import Filter from './Filter/Filter';
+
+
 
 function App() {
+
   return (
     <>
-      {/* <Form />
-      <Filter /> */}
+
+      <Form />
+      <Filter />
       <ContactsList />
     </>
   );
