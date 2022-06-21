@@ -1,16 +1,16 @@
 
-import { useDispatch, useSelector } from 'react-redux';
+// import {useSelector } from 'react-redux';
 import ContactsItem from 'components/ContactsItem/ContactsItem';
 import style from './ContactsList.module.css';
-import actions from 'redux/contacts/contacts-actions';
+
 
 import { useGetContactsQuery, useDeleteContactMutation } from 'redux/contacts-Api';
 
 
 function ContactsList() {
-  const dispatch = useDispatch();
 
-  let filter = useSelector(state => state.contacts.filter);
+
+  // let filter = useSelector(state => state.contacts.filter);
 
 
 const {data:contacts} = useGetContactsQuery();
