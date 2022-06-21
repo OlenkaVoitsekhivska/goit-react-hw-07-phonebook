@@ -4,7 +4,7 @@ import ContactsItem from 'components/ContactsItem/ContactsItem';
 import style from './ContactsList.module.css';
 import actions from 'redux/contacts/contacts-actions';
 
-import { useGetContactsQuery, useAddContactMutation, useDeleteContactMutation } from 'redux/contacts-Api';
+import { useGetContactsQuery } from 'redux/contacts-Api';
 
 
 function ContactsList() {
