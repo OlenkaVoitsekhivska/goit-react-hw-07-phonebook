@@ -3,12 +3,10 @@ import { combineReducers } from 'redux';
 
 import actions from './contacts-actions';
 
-
 const filter = createReducer('', {
   [actions.updateFilter]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
-  // phoneBook,
   filter,
 });

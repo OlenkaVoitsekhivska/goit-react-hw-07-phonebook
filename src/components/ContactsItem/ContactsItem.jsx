@@ -2,7 +2,6 @@ import style from './ContactsItem.module.css';
 import PropTypes from 'prop-types';
 
 function ContactsItem({ name, phone, onDeleteContact }) {
-  
   return (
     <li className={style.contactItem}>
       <p className={style.contName}>{name}</p>
@@ -16,7 +15,7 @@ function ContactsItem({ name, phone, onDeleteContact }) {
 ContactsItem.propTypes = {
   name: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
-  // onDeleteContact: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactsItem;

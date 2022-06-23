@@ -3,7 +3,6 @@ import style from './Filter.module.css';
 
 import actions from 'redux/contacts/contacts-actions';
 
-
 function Filter() {
   const dispatch = useDispatch();
   const filterUpd = useSelector(state => state.contacts.filter);

@@ -5,38 +5,36 @@ import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts-Api';
 import style from './Form.module.css';
 
 function Form() {
-  const [input, setInput] = useState({ name: '', number: '' });
+  const [input, setInput] = useState({ name: '', phone: '' });
 
-  const {data:contacts} = useGetContactsQuery();
+  const { data: contacts } = useGetContactsQuery();
   const [addContact] = useAddContactMutation();
 
-
+  const handleAddContact = async data => {
+    await addContact(data).unwrap();
+  };
 
   const handleInputChange = e => {
     let key = e.target.name;
     setInput(prevState => ({ ...prevState, [key]: e.target.value }));
   };
 
-
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     let data = { ...input, id: nanoid() };
 
     let [check] = contacts.filter(el => {
-          return el.name.toLowerCase() === data.name.toLowerCase();
-        });
-    
-        if (check) {
-          alert(`${data.name} is already in your contacts`);
-        } else {
-    
-          await addContact(data);
-      
-        }
-    setInput({ name: '', number: '' });
-  };
+      return el.name.toLowerCase() === data.name.toLowerCase();
+    });
 
+    if (check) {
+      alert(`${data.name} is already in your contacts`);
+    } else {
+      handleAddContact(data);
+    }
+    setInput({ name: '', phone: '' });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -59,9 +57,9 @@ function Form() {
         <input
           className={style.numberInput}
           onChange={handleInputChange}
-          value={input.number}
+          value={input.phone}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

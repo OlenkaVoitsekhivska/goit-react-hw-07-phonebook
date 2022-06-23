@@ -3,11 +3,9 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import contactsReducer from '../redux/contacts/contacts-reducers';
 import { contactsApi } from './contacts-Api';
 
-
-
- const store = configureStore({
+const store = configureStore({
   reducer: {
-    contacts:contactsReducer,
+    contacts: contactsReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
 
@@ -17,9 +15,6 @@ import { contactsApi } from './contacts-Api';
   ],
 });
 
-setupListeners(store.dispatch)
-
-
+setupListeners(store.dispatch);
 
 export default store;
-
